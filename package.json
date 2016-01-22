@@ -1,7 +1,7 @@
 {
   "name": "typed-maybe",
   "id": "typed-maybe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Maybe type in JS",
   "keywords": [
     "maybe",
