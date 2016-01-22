@@ -1,0 +1,9 @@
+[ignore]
+.*/lib/.*
+
+[libs]
+./interfaces
+
+[include]
+
+[options]
