@@ -73,17 +73,19 @@ Maybe.oneOf([ Maybe.nothing(), Maybe.nothing(), Maybe.nothing() ]) // => null
 `chain` can be used to chain together multiple computations that return optional value:
 
 ```js
-const readField = (name, record) =>
-  ( record.hasOwnPropertyName(name)
-  ? Maybe.just(record[name])
-  : Maybe.nothing
+const readField = (name/*:string*/, tree/*:{}*/) =>
+  ( tree[name] == null
+  ? Maybe.nothing()
+  : Maybe.just(tree[name])
   )
 
-const readPath = ([first, ...rest], record) =>
-  ( entries.length === 0
-  ? record
-  : readField(filst, record)
-    .chain(record => readPath(rest, record))
+const readPath = ([first, ...rest], tree) =>
+  ( rest.length === 0
+  ? readField(first, tree)
+  : Maybe.chain
+    ( readField(first, tree)
+    , branch => readPath(rest, branch)
+    )
   )
 
 readPath
