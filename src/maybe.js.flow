@@ -1,0 +1,46 @@
+/* @flow */
+
+export type Nothing
+  = void
+  | null
+
+export type Just <value>
+  = value
+
+export type Maybe <value>
+  = Nothing
+  | Just<value>
+
+declare export function just <value>
+  (value:value):
+  Just<value>
+
+declare export function nothing
+  ():
+  Nothing
+
+declare export function isJust <value>
+  (input:Maybe<value>):
+  boolean
+
+declare export function isNothing <value>
+  (input:Maybe<value>):
+  boolean
+
+declare export function withDefault <a>
+  (fallback:a, a:Maybe<a>):
+  Maybe<a>
+
+
+declare export function map <a, b>
+  (f:(a:a) => b, a:Maybe<a>):
+  Maybe<b>
+
+
+declare export function oneOf <a>
+  (options:Array<Maybe<a>>):
+  Maybe<a>
+
+declare export function chain <a, b>
+  (a:Maybe<a>, then:(a:a) => Maybe<b>):
+  Maybe<b>

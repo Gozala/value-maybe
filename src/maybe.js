@@ -1,30 +1,54 @@
 /* @flow */
 
 /*::
-import type {Maybe} from "./maybe.flow"
+import type {Maybe, Just, Nothing} from "./maybe"
+export type {Maybe, Just, Nothing}
 */
 
+export const nothing =
+  ()/*:Nothing*/ =>
+  null
 
-export const map = /*::<a, b>*/
-  (f/*:(a:a) => b*/, a/*:Maybe<a>*/)/*:Maybe<b>*/ =>
-  ( a == null
-  ? null
-  : f(a)
-  );
 
-export const chain = /*::<a, b>*/
-  (then/*:(a:a) => Maybe<b>*/, a/*:a*/)/*:Maybe<b>*/ =>
-  ( a == null
-  ? null
-  : then(a)
-  );
+export const just = /*::<a>*/
+  (value/*:a*/)/*:Just<a>*/ =>
+  value
+
+export const isNothing = /*::<a>*/
+  (value/*:Maybe<a>*/)/*:boolean*/ =>
+  ( value == null
+  ? true
+  : false
+  )
+
+export const isJust = /*::<a>*/
+  (value/*:Maybe<a>*/)/*:boolean*/ =>
+  ( value == null
+  ? false
+  : true
+  )
 
 export const withDefault = /*::<a>*/
   (fallback/*:a*/, a/*:Maybe<a>*/)/*:a*/ =>
   ( a == null
   ? fallback
   : a
-  );
+  )
+
+
+export const map = /*::<a, b>*/
+  (f/*:(a:a) => b*/, a/*:Maybe<a>*/)/*:Maybe<b>*/ =>
+  ( a == null
+  ? a
+  : f(a)
+  )
+
+export const chain = /*::<a, b>*/
+  (a/*:a*/, then/*:(a:a) => Maybe<b>*/)/*:Maybe<b>*/ =>
+  ( a == null
+  ? a
+  : then(a)
+  )
 
 export const oneOf = /*::<a>*/
   (maybes/*:Array<Maybe<a>>*/)/*:Maybe<a>*/ => {

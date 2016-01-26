@@ -1,9 +1,13 @@
 [ignore]
+.*/dist/.*
 .*/lib/.*
 
 [libs]
-./interfaces
 
 [include]
 
 [options]
+module.name_mapper='../value-maybe' -> './src/maybe.js'
+
+suppress_comment= \\(.\\|\n\\)*\\@FlowIssue
+suppress_comment= \\(.\\|\n\\)*\\@FlowIgnore
