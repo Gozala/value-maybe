@@ -1,7 +1,7 @@
 /* @flow */
 
 import test from "tape"
-import * as Maybe from "../../value-maybe"
+import * as Maybe from ".."
 
 
 test("nothing", test => {
